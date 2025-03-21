@@ -1,0 +1,19 @@
+{
+  "canisters": {
+    "backend_backend": {
+      "candid": "src/backend_backend/backend_backend.did",
+      "package": "backend_backend",
+      "type": "rust",
+      "source": ["src/backend_backend/src"],
+      "build": "cargo build --target wasm32-unknown-unknown --release"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
