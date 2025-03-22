@@ -48,3 +48,19 @@ fn get_user(user_id: Principal) -> Option<User> {
 fn greet(name: String) -> String {
     format!("Hello, {}!", name)
 }
+
+
+type User = record {
+    id: principal;
+    username: text;
+    email: text;
+};
+
+
+
+service : {
+    "greet": (text) -> (text) query;
+    "create_user": (text, text) -> (variant { Ok: User; Err: text });
+    "get_user": (principal) -> (opt User) query;
+    "get_my_principal": () -> (principal) query;
+}

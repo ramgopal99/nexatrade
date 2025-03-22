@@ -1,17 +1,32 @@
 {
   "canisters": {
-    "backend_backend": {
+    "backend": {
       "candid": "src/backend_backend/backend_backend.did",
       "package": "backend_backend",
       "type": "rust",
-      "source": ["src/backend_backend/src"],
+      "source": ["src/backend_backend"],
       "build": "cargo build --target wasm32-unknown-unknown --release"
+    },
+    "frontend": {
+      "dependencies": ["backend"],
+      "type": "assets",
+      "frontend": {
+        "entrypoint": "src/backend_frontend/out/index.html"
+      },
+      "source": ["src/backend_frontend/out"],
+      "build": "cd src/backend_frontend && npm run build"
     }
   },
   "defaults": {
     "build": {
       "args": "",
       "packtool": ""
+    }
+  },
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
     }
   },
   "output_env_file": ".env",

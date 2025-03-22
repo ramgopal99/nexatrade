@@ -1,0 +1,10 @@
+type Entry = record {
+    id: text;
+    owner: principal;
+};
+
+service : {
+    "list_entries": () -> (vec Entry) query;
+    "add_entry": (text) -> (variant { Ok; Err: text });
+    "ping": () -> (bool) query;
+}
